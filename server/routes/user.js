@@ -182,6 +182,24 @@ router.delete("/delete/:id", isLoggedIn, (req, res) => {
   });
 });
 
+router.post("/modifAll", isLoggedIn, (req, res) => {
+  User.updateMany(
+    {},
+    {
+      friendList: req.body.friendList,
+      friendRequest: req.body.friendRequest,
+      waitConf: req.body.waitConf,
+    },
+    (err) => {
+      if (err) {
+        res.status(500).json("erreur ModifFriendRemove");
+      } else {
+        res.status(200).json("ModifFriendRemove OK !");
+      }
+    }
+  );
+});
+
 router.get("/lookSelected/:email", (req, res) => {
   User.findOne({ email: req.params.email }).exec((err, user) => {
     if (err || !user) {
@@ -202,7 +220,11 @@ router.get("/lookSelect/:id", isLoggedIn, (req, res) => {
 
 router.post("/addFriendRequest", isLoggedIn, (req, res) => {
   User.findOne({ _id: req.body._id }).exec((err, users) => {
-    if (users.friendList.includes(req.body.friendRequest) || users.waitConf.includes(req.body.friendRequest) || users.friendRequest.includes(req.body.friendRequest)) {
+    if (
+      users.friendList.includes(req.body.friendRequest) ||
+      users.waitConf.includes(req.body.friendRequest) ||
+      users.friendRequest.includes(req.body.friendRequest)
+    ) {
       res.status(500).json("erreur already  friend ");
     } else {
       User.findOneAndUpdate(
@@ -219,7 +241,7 @@ router.post("/addFriendRequest", isLoggedIn, (req, res) => {
               subject: `Vous avez reçu une demande d'amis`,
               text: `Bonjour ${req.body.username},vous avez reçu une demande d'amis `,
             };
-    
+
             transporter.sendMail(mailOptions, function (error, info) {
               if (error) {
                 console.log(error);
@@ -231,9 +253,7 @@ router.post("/addFriendRequest", isLoggedIn, (req, res) => {
         }
       );
     }
-  })
-
-  
+  });
 });
 
 router.post("/addListFriend", isLoggedIn, (req, res) => {

@@ -1,9 +1,9 @@
-<ul *ngFor="let user of allUser, let index = index">
+<ul *ngFor="let user of allUser, let index = index" fxLayoutAlign="center center" fxLayout="column">
   <li>
     <hr>
-    <span>{{user.username}}</span>
+    <span fxLayoutAlign="center">{{user.username}}</span>
     <br>
-    <span>{{user.email}}</span>
+    <span fxLayoutAlign="center">{{user.email}}</span>
     <br>
     <button mat-raised-button class="link m-2" (click)="upPost(index)">Envoyer un Message</button>
     <button mat-raised-button class="link" (click)="modifUser(index)">Effectuer une Modification du Profil</button>

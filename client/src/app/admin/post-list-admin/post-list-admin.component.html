@@ -1,15 +1,22 @@
-<span *ngFor="let post of allPost; let index = index">
+<span *ngFor="let post of allPost; let index = index" fxLayoutAlign="center center" fxLayout="column">
   <ul>
     <hr>
-    <li>{{ post.title }}</li>
-    <li>{{ post.content }}</li>
-    <button mat-raised-button class="link m-2" (click)="upAnswer(index)">Repondre au Message</button>
-    <button mat-raised-button class="link" (click)="modifPost(index)">Effectuer une Modification</button>
-    <button mat-raised-button class="link m-2" (click)="deletePost(index)">Supprimer le Post</button>
+    <li fxLayoutAlign="center">Titre: {{ post.title }}</li>
+    <li fxLayoutAlign="center">Poster par: {{ post.nameUser }}</li>
+    <br>
+    <li fxLayoutAlign="center"> {{ post.content }}</li>
+    <li fxLayoutAlign="center">Poster le: {{ post.postDate | date:short }}</li>
+    <div fxLayout="row" fxLayoutAlign="center center">
+    <button mat-raised-button class="link m-2" (click)="upAnswer(index)" >Repondre au Message</button>
+    <button mat-raised-button class="link" (click)="modifPost(index)" >Effectuer une Modification</button>
+    <button mat-raised-button class="link m-2" (click)="deletePost(index)" >Supprimer le Post</button>
     <hr>
+    </div>
   </ul>
-  <ul *ngFor="let answer of allPost[index].reponse; let indexAnswer = index">
-    <li>{{ answer.content }}</li>
+  <ul *ngFor="let answer of allPost[index].reponse; let indexAnswer = index" >
+    <li fxLayoutAlign="center">reponse de {{post.title}}</li>
+    <br>
+    <li >{{ answer.content }}</li>
     <button mat-raised-button class="link m-2" (click)="modifAnswer(index, indexAnswer)">Effectuer une Modification</button>
     <button mat-raised-button class="link m-2" (click)="deleteAnswer(index, indexAnswer)">Supprimer la Reponse</button>
     <hr>

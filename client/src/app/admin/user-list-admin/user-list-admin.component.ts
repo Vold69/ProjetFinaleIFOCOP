@@ -40,6 +40,33 @@ export class UserListAdminComponent implements OnInit, OnDestroy {
   }
 
   public deleteUser(index: number) {
+    this.allUser.forEach(user => {
+      let compteurFL = 0;
+      user.friendList.forEach(friendList => {
+        if (friendList === this.allUser[index]._id) {
+          console.log(friendList);
+          user.friendList.splice(compteurFL, 1);
+        }
+        compteurFL++;
+      });
+      let compteurFR = 0;
+      user.friendRequest.forEach(friendRequest => {
+        if (friendRequest === this.allUser[index]._id) {
+          console.log(friendRequest);
+          user.friendRequest.splice(compteurFR, 1);
+        }
+        compteurFR++;
+      });
+      let compteurWF = 0;
+      user.waitConf.forEach(waitConf => {
+        if (waitConf === this.allUser[index]._id) {
+          console.log(waitConf);
+          user.waitConf.splice(compteurWF, 1);
+        }
+        compteurWF++;
+      });
+    });
+    this.subscription = this.userService.removeUserModif(this.allUser).subscribe();
     this.subscription = this.userService.removeUser(this.allUser[index]._id).subscribe(() => {
       this.subscription = this.userService.fectchUser().subscribe((allUser: User[]) => {
         this.allUser = allUser;

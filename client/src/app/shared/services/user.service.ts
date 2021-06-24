@@ -92,6 +92,10 @@ export class UserService {
     return this.http.delete<User>(this.userDelete);
   }
 
+  public removeUserModif(allUser: User[]): Observable<User[]> {
+    return this.http.post<User[]>('/api/user/modifAll', allUser);
+  }
+
   public addFriendRequest(user: User, requestID: string): Observable<User> {
     if (!user.friendList.includes(requestID) || !user.waitConf.includes(requestID) || !user.friendRequest.includes(requestID)) {
       user.friendRequest.push(requestID);
