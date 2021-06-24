@@ -10,7 +10,6 @@ export class AProposComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    
   }
 
 }
