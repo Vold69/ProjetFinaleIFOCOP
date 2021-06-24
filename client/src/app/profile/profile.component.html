@@ -1,0 +1,27 @@
+<div fxLayout="row" class="py-5 my-5" fxLayoutAlign="center center">
+  <mat-card class="m-5 ">
+    <mat-card-title>Mon Compte</mat-card-title>
+    <mat-card-content
+      *ngIf="currentUser"
+      fxLayout="column"
+      fxLayoutAlign="15px"
+    >
+      <div>Pseudo: {{ currentUser.username }}</div>
+      <div>Email: {{ currentUser.email }}</div>
+      <div>Présentation: {{ currentUser.presentation }}</div>
+      <div>Hobbie: {{ currentUser.preferences }}</div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="m-5 ">
+    <mat-card-content fxLayout="column">
+      <span class="link" routerLink="/friend-list" queryParamsHandling="merge"
+        >Liste d'amis</span
+      >
+      <span class="link" routerLink="/friend-request" queryParamsHandling='merge'>
+        Demande d'amis</span
+      >
+      <span routerLink="/edit-profile" queryParamsHandling='merge' >Modifier son profil</span>
+      <span class="link" routerLink="/list-user" queryParamsHandling='merge'>Liste d'utilisateur</span>
+    </mat-card-content>
+  </mat-card>
+</div>

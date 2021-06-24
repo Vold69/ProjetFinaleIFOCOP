@@ -1,0 +1,47 @@
+<mat-card class="m-5">
+  <mat-card-title fxLayoutAlign="center">Friend List</mat-card-title>
+</mat-card>
+<div
+  fxLayout="column"
+  class="py-5 my-5"
+  fxLayoutAlign="center center"
+  *ngIf="checkFriend"
+>
+  <p>Cette User n'a actuellement aucun amis</p>
+</div>
+<div
+  fxLayout="column"
+  class="py-5 my-5"
+  fxLayoutAlign="center center"
+  *ngIf="!checkFriend"
+>
+  <mat-card *ngFor="let friend of friendList; let index = index" class="m-2">
+    <div *ngIf="friend.username">
+      <span >username: {{ friend.username }}</span>
+      <br />
+    </div>
+    <div *ngIf="friend.email">
+      <span >email: {{ friend.email }}</span>
+      <br />
+    </div>
+    <div *ngIf="friend.presentation">
+      <span
+        >presentation: {{ friend.presentation }}</span
+      >
+      <br />
+    </div>
+    <div *ngIf="friend.preferences">
+      <span
+        >preferences: {{ friend.preferences }}</span
+      >
+      <br />
+    </div>
+    <div *ngIf="friend.prenom">
+      <span >prenom: {{ friend.prenom }}</span>
+      <br />
+    </div>
+    <div *ngIf="friend.nom">
+      <span >nom: {{ friend.nom }}</span>
+    </div>
+  </mat-card>
+</div>

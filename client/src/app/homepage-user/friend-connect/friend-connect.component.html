@@ -1,0 +1,11 @@
+<div fxLayoutAlign="space-between center" fxLayout="column nowrap" class="friend">
+  <span *ngIf="friends[0] === undefined">Votre liste d'amis est actuellement vide</span>
+  <span *ngFor="let friend of friends; let index = index" >
+  <ul class="pl-0 m-2">
+    <li class="link" (click)="changeDomaine(index)">
+      {{ friend.username }}
+    </li>
+  </ul>
+</span>
+<button mat-raised-button class="link box"  (click)="returnDomaine()">return sur votre Domaine</button>
+</div>

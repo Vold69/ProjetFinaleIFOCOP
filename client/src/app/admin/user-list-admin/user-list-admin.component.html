@@ -1,0 +1,12 @@
+<ul *ngFor="let user of allUser, let index = index">
+  <li>
+    <hr>
+    <span>{{user.username}}</span>
+    <br>
+    <span>{{user.email}}</span>
+    <br>
+    <button mat-raised-button class="link m-2" (click)="upPost(index)">Envoyer un Message</button>
+    <button mat-raised-button class="link" (click)="modifUser(index)">Effectuer une Modification du Profil</button>
+    <button mat-raised-button class="link m-2" (click)="deleteUser(index)">Supprimer le Profil</button>
+  </li>
+</ul>

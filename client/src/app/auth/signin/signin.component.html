@@ -1,0 +1,18 @@
+<div fxLayout="column" class="py-5" fxLayoutAlign="center center">
+<mat-card>
+  <mat-card-title>Connexion</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="signinForm" fxLayout="column" fxLayoutGap="15px" fxLayoutAlign="center center">
+      <mat-form-field>
+        <input matInput type="email" formControlName="email" placeholder="email">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="password" formControlName="password" placeholder="password">
+      </mat-form-field>
+      <div *ngIf="error">{{error}}</div>
+      <button mat-raised-button color="primary" (click)="trySignin()">Connexion</button>
+      <button mat-raised-button color="primary" routerLink="/look-password">Vous avez perdu votre mot de passe?</button>
+    </form>
+  </mat-card-content>
+</mat-card>
+</div>

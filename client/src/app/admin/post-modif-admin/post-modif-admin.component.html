@@ -1,0 +1,55 @@
+  <div class="py-5" >
+    <mat-card *ngIf="postModif"  class="max" >
+      <mat-card-title>Modification de Post</mat-card-title>
+      <mat-card-content >
+        <form [formGroup]="postFrom" fxLayout="column" fxLayoutGap="15px">
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              formControlName="title"
+              placeholder="title"
+            />
+          </mat-form-field>
+          <mat-form-field class="area">
+            <textarea
+              matInput
+              formControlName="content"
+              name=""
+              id=""
+              wrap="hard"
+              cols="75"
+              rows="10"
+            ></textarea>
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              formControlName="idUser"
+              placeholder="idUser"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              formControlName="domaine"
+              placeholder="domaine"
+            />
+          </mat-form-field>
+          <button mat-raised-button color="primary" (click)="trySendPost()">
+            Envoyer le Message
+          </button>
+          <button
+            mat-raised-button
+            color="primary"
+            routerLink="/admin"
+            queryParamsHandling="merge"
+          >
+            Annuler
+          </button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>

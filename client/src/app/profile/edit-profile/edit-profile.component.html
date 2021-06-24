@@ -1,0 +1,163 @@
+<div class="py-5" fxLayoutAlign="center center">
+  <mat-card class="edit">
+    <mat-card-title fxLayoutAlign="center">Edit Profile</mat-card-title>
+    <mat-card-content *ngIf="currentUser | async; let user">
+      <form
+        [formGroup]="editForm"
+        fxLayout="column"
+        fxLayoutGap="15px"
+        fxLayoutAlign="center center"
+        >
+        <mat-form-field class="inField-70">
+          <input
+            matInput
+            type="text"
+            formControlName="prenom"
+            placeholder="Prenom"
+          />
+          <mat-hint>Entrer une valeur pour la changer</mat-hint>
+        </mat-form-field>
+        <mat-form-field class="inField-70">
+          <input
+            matInput
+            type="text"
+            formControlName="nom"
+            placeholder="Nom"
+          />
+          <mat-hint>Entrer une valeur pour la changer</mat-hint>
+        </mat-form-field>
+        <mat-form-field class="inField-90">
+          <input
+            matInput
+            type="text"
+            formControlName="adresse"
+            placeholder="Adresse"
+          />
+          <mat-hint>Entrer une valeur pour la changer</mat-hint>
+        </mat-form-field>
+        <mat-form-field >
+          <input
+            matInput
+            type="number"
+            formControlName="age"
+            placeholder="Age"
+          />
+          <mat-hint>Entrer une valeur pour la changer</mat-hint>
+        </mat-form-field>
+        <mat-form-field class="inField-70">
+          <input
+            matInput
+            type="text"
+            formControlName="username"
+            placeholder="Pseudonyme"
+          />
+          <mat-hint>Entrer votre nouvelle identifiant, si vous désirer le changer</mat-hint>
+        </mat-form-field>
+        <mat-label *ngIf="erreursForm.username">{{
+          erreursForm.username
+        }}</mat-label>
+        <mat-form-field class="inField-70">
+          <input
+            matInput
+            type="email"
+            formControlName="email"
+            placeholder="Email"
+          />
+          <mat-hint>Entrer votre nouveau Email, si vous désirer le changer</mat-hint>
+        </mat-form-field>
+        <mat-label *ngIf="erreursForm.email">{{ erreursForm.email }}</mat-label>
+        <mat-form-field class="inField-70">
+          <input
+            matInput
+            type="text"
+            formControlName="password"
+            placeholder="Password"
+          />
+          <mat-hint>Entrer votre nouveau mot de passe, si vous désirer le changer</mat-hint>
+        </mat-form-field>
+        <mat-label *ngIf="erreursForm.password">{{
+          erreursForm.password
+        }}</mat-label>
+        <mat-form-field class="inField-70">
+          <input
+            matInput
+            type="text"
+            formControlName="passConf"
+            placeholder="Password"
+          />
+          <mat-hint>Entrer a nouvelle le nouveau mot de passe</mat-hint>
+        </mat-form-field>
+        <mat-label *ngIf="erreursForm.password">{{
+          erreursForm.password
+        }}</mat-label>
+        <mat-form-field class="area">
+          <textarea
+            matInput
+            formControlName="presentation"
+            placeholder="Présentation"
+            name=""
+            id=""
+            wrap="hard"
+            cols="75"
+            rows="10"
+          ></textarea>
+          <mat-hint>Entrer votre description de profil</mat-hint>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Quel est votre genre?*</mat-label>
+          <mat-select formControlName="genre">
+            <mat-option>Choisir</mat-option>
+            <mat-option *ngFor="let genre of genres" [value]="genre">{{
+              genre
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="inField-90">
+          <mat-label>Favorite Activité</mat-label>
+          <mat-chip-list #chipList aria-label="Fruit selection">
+            <mat-chip
+              *ngFor="let hobbie of hobbies"
+              [selectable]="selectable"
+              [removable]="removable"
+              (removed)="remove(hobbie)"
+            >
+              {{ hobbie }}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input
+              placeholder="New hobbie..."
+              #hobbieInput
+              [formControl]="hobbieCtrl"
+              [matAutocomplete]="auto"
+              [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              (matChipInputTokenEnd)="add($event)"
+            />
+          </mat-chip-list>
+          <mat-autocomplete
+            #auto="matAutocomplete"
+            (optionSelected)="selected($event)"
+          >
+            <mat-option
+              *ngFor="let hobbie of filteredFruits | async"
+              [value]="hobbie"
+            >
+              {{ hobbie }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <span *ngIf="error">{{error.error}}</span>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="editProfil(user._id)"
+        >
+          Confirmer
+        </button>
+        <button mat-raised-button color="primary" (click)="annuler()">
+          Annuler
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

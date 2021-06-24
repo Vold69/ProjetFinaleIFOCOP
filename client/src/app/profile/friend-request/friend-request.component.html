@@ -1,0 +1,80 @@
+<div fxLayout="row wrap" fxLayoutAlign="center">
+  <div class="m-5">
+    <mat-card>
+      <mat-card-title fxLayoutAlign="center"
+        >Liste de request d'amis</mat-card-title
+      >
+    </mat-card>
+    <div>
+      <mat-card class="mt-5" *ngIf="checkRequest">
+        <p>Votre liste de demande d'amis est actuellement vide</p>
+      </mat-card>
+      <mat-card class="mt-5" *ngIf="!checkRequest">
+        <ul>
+          <li *ngFor="let user of requestUser; let index = index">
+            <div *ngIf="user.username">
+              <span>{{ user.username }}</span>
+              <hr />
+            </div>
+            <div *ngIf="user.email">
+              <span>{{ user.email }}</span>
+              <hr />
+            </div>
+            <div *ngIf="user.presentation">
+              <span>{{ user.presentation }}</span>
+              <hr />
+            </div>
+            <div *ngIf="user.preferences">
+              <span>{{ user.preferences }}</span>
+              <hr />
+            </div>
+            <button mat-raised-button class="link" (click)="addFriend(index)">
+              Accepter
+            </button>
+            <button
+              mat-raised-button
+              class="link"
+              (click)="deniedFriend(index)"
+            >
+              Refuser
+            </button>
+          </li>
+        </ul>
+      </mat-card>
+    </div>
+  </div>
+  <div class="m-5">
+    <mat-card fxLayoutAlign="center center">
+      <mat-card-title>Liste de demande d'amis en attente</mat-card-title>
+    </mat-card>
+    <div>
+      <mat-card class="mt-5" *ngIf="checkWait">
+        <p>
+          Votre liste d'attente de confirmation d'amis est actuellement vide
+        </p>
+      </mat-card>
+      <mat-card class="mt-5" *ngIf="!checkWait">
+        <ul *ngFor="let NeedFriend of waitUser; let index = index">
+          <li>
+            <div *ngIf="NeedFriend.email">
+              <span>{{ NeedFriend.email }}</span>
+              <hr />
+            </div>
+            <div *ngIf="NeedFriend.username">
+              <span>{{ NeedFriend.username }}</span>
+              <hr />
+            </div>
+            <div *ngIf="NeedFriend.presentation">
+              <span>{{ NeedFriend.presentation }}</span>
+              <hr />
+            </div>
+            <div *ngIf="NeedFriend.preferences">
+              <span>{{ NeedFriend.preferences }}</span>
+              <hr />
+            </div>
+          </li>
+        </ul>
+      </mat-card>
+    </div>
+  </div>
+</div>

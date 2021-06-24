@@ -1,0 +1,64 @@
+<div fxLayout="column nowrap">
+  <button
+    class="link box"
+    mat-raised-button
+    routerLink="/homepageUser/post-create/:_id"
+    queryParamsHandling="merge"
+  >
+    Crée un post
+  </button>
+  <div>
+    <span
+      *ngFor="let post of postDomainePost; let index = index"
+      class="post"
+      fxLayout="column nowrap"
+      fxLayoutAlign="center center"
+    >
+      <ul [ngStyle]="{ 'list-style': 'none' }">
+        <li fxLayoutAlign="center">titre: {{ post.title }}</li>
+        <br />
+        <li>{{ post.content }}</li>
+        <br />
+        <li>
+          Poster par {{ post.nameUser }} le
+          {{ post.postDate | date: shortDate }}
+        </li>
+      </ul>
+      <button
+        mat-raised-button
+        class="link box"
+        fxLayoutAlign="start"
+        (click)="sendRep(index)"
+      >
+        Repondre au post
+      </button>
+      <div>
+        <ul
+          class="m-2"
+          fxLayout="column nowrap"
+          fxLayoutAlign="center center"
+          *ngFor="
+            let answer of postDomainePost[index].reponse;
+            let indexAnswer = index
+          "
+          [ngStyle]="{ 'list-style': 'none' }"
+        >
+          <li>{{ answer.content }}</li>
+          <br />
+          <li>
+            Poster par {{ answer.nameUser }} le
+            {{ post.postDate | date: shortDate }}
+          </li>
+          <button
+            *ngIf="answer.idUser === _id"
+            mat-raised-button
+            class="box"
+            (click)="deleteRep(index, indexAnswer)"
+          >
+            Delete Answer
+          </button>
+        </ul>
+      </div>
+    </span>
+  </div>
+</div>

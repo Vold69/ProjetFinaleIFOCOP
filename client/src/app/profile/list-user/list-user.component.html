@@ -1,0 +1,46 @@
+<mat-card fxLayoutAlign="center center">
+  <mat-card-title *ngIf="search !== ''">Liste d'utilisateur</mat-card-title>
+  <mat-card-title *ngIf="search === ''" >Rentrer le nom de l'amis que vous rechercher ?</mat-card-title>
+</mat-card>
+<input class="m-5 inField-90" type="text" [(ngModel)]="search" placeholder="Rechercher un amis">
+<div class="m-5" fxLayoutAlign="center center">
+  <div *ngIf="search === ''" fxLayout="row wrap">
+    <mat-card *ngFor="let user of recoUser; let index = index" class="m-2">
+      <ul>
+        <li>
+          <span>{{ user.username }}</span>
+          <hr />
+          <span>{{ user.email }}</span>
+          <hr />
+          <button mat-raised-button class="link" (click)="goFriendList(index)">
+            Check Friend List User
+          </button>
+          <hr />
+          <button mat-raised-button class="link" (click)="addFriendSearch(index)">
+            Add to Friend List
+          </button>
+          <br />
+        </li>
+      </ul>
+    </mat-card>
+  </div>
+  <div *ngIf="search !== ''" fxLayout="row wrap">
+    <mat-card *ngFor="let userFilter of lookUserDetail|filter:search; let index = index">
+      <ul >
+        <li>
+          <span>{{ userFilter.username }}</span>
+          <hr />
+          <span>{{ userFilter.email }}</span>
+          <hr />
+          <button mat-raised-button class="link" (click)="goFriendList(index)">
+            Check Friend List User
+          </button>
+          <hr />
+          <button mat-raised-button class="link" (click)="addFriend(index)">
+            Add to Friend List
+          </button>
+        </li>
+      </ul>
+    </mat-card>
+  </div>
+</div>
