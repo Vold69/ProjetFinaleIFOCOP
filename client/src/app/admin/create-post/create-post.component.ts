@@ -28,17 +28,20 @@ export class CreatePostComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    // get Param
     this.subscription = this.activatedRoute.queryParamMap.subscribe((paramMap: ParamMap) => {
       this.idTarget = paramMap.get('target');
       this.idAdmin = paramMap.get('_id');
     });
 
+    // get target
     this.subscription = this.userService
       .fectchUserSelect(this.idTarget)
       .subscribe((user: User) => {
         this.target = user;
       });
 
+    // form group pour post
     this.postForm = this.fb.group({
       title: [],
       content: [],
@@ -50,6 +53,7 @@ export class CreatePostComponent implements OnInit, OnDestroy {
     });
   }
 
+  // send post
   public trySend() {
     this.subscription = this.postService.createPost(this.postForm.value).subscribe(() => {
       this.router.navigate(['/admin/user'], {

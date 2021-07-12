@@ -53,7 +53,7 @@ export class UserModifAdminComponent implements OnInit, OnDestroy {
   public editForm: FormGroup;
   public genres: string[] = ['Homme', 'Femme', 'Autre', 'Non Definie'];
 
-
+  // form group pour afficher les erreurs
   public erreursForm = {
     username: '',
     email: '',
@@ -138,10 +138,11 @@ export class UserModifAdminComponent implements OnInit, OnDestroy {
     }
   }
 
+  // hobbie add value
   public add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
 
-    // Add our hobbie
+    // Add your hobbie
     if (value) {
       this.hobbies.push(value);
     }
@@ -205,7 +206,6 @@ export class UserModifAdminComponent implements OnInit, OnDestroy {
         if (this.editForm.value.genre === null) {
           this.editForm.value.genre = this.target.genre;
         }
-        console.log(1);
 
         return this.userService
           .editUserAdmin(this.target._id, this.editForm.value)

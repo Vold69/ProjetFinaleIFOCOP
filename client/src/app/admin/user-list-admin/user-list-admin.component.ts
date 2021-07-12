@@ -21,6 +21,7 @@ export class UserListAdminComponent implements OnInit, OnDestroy {
     });
   }
 
+  //send post to spécifique User
   public upPost(index: number) {
     this.route.navigate(['/admin/create-post'], {
       relativeTo: this.activatedRoute,
@@ -39,6 +40,7 @@ export class UserListAdminComponent implements OnInit, OnDestroy {
     });
   }
 
+  // delete user in db and in all friend
   public deleteUser(index: number) {
     this.allUser.forEach(user => {
       let compteurFL = 0;

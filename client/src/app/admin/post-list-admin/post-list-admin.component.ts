@@ -20,11 +20,13 @@ export class PostListAdminComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    // get all post
     this.subscription = this.postService.getAllPost().subscribe((post) => {
       this.allPost = post;
     });
   }
 
+  // send answer to spécifique post
   public upAnswer(index: number) {
     this.route.navigate(['/admin/send-post'], {
       relativeTo: this.activatedRoute,
@@ -34,6 +36,7 @@ export class PostListAdminComponent implements OnInit, OnDestroy {
     });
   }
 
+  // modif spécifique post
   public modifPost(index: number) {
     this.route.navigate(['/admin/post-modif'], {
       relativeTo: this.activatedRoute,
@@ -43,6 +46,7 @@ export class PostListAdminComponent implements OnInit, OnDestroy {
     });
   }
 
+  // modif spécifique answer of spécifique post
   public modifAnswer(index: number, indexAnswer: number) {
     this.route.navigate(['/admin/answer-modif'], {
       relativeTo: this.activatedRoute,
@@ -52,6 +56,7 @@ export class PostListAdminComponent implements OnInit, OnDestroy {
     });
   }
 
+  // delete post
   public deletePost(index: number) {
     this.subscription = this.postService
       .removePost(this.allPost[index]._id)
@@ -62,6 +67,7 @@ export class PostListAdminComponent implements OnInit, OnDestroy {
       });
   }
 
+  // delete answer
   public deleteAnswer(index: number, indexAnswer: number) {
     this.allPost[index].reponse.splice(indexAnswer, 1);
     this.subscription = this.postService

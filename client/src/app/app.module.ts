@@ -12,23 +12,6 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { TopbarComponent } from './shared/components/topbar/topbar.component';
-
-// Module
-import { LayoutModule } from './shared/layout/layout.module';
-
-// Routing
-import { APP_ROUTING } from './app.routing';
-
-// Services
-import { AuthService } from './shared/services/auth.service';
-import { ProfileComponent } from './profile/profile.component';
-import { UserService } from './shared/services/user.service';
-
-// Guards
-import { AuthGuard } from './shared/guards/auth.guard';
-
-// Interceptors
-import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
 import { ListUserComponent } from './profile/list-user/list-user.component';
 import { FriendRequestComponent } from './profile/friend-request/friend-request.component';
 import { HomepageUserComponent } from './homepage-user/homepage-user.component';
@@ -47,11 +30,31 @@ import { PostListAdminComponent } from './admin/post-list-admin/post-list-admin.
 import { UserListAdminComponent } from './admin/user-list-admin/user-list-admin.component';
 import { SendPostComponent } from './admin/send-post/send-post.component';
 import { CreatePostComponent } from './admin/create-post/create-post.component';
-import { RegexpModule } from './shared/validator/regexp/regexp.module';
 import { AProposComponent } from './homepage/a-propos/a-propos.component';
 import { LostPasswordComponent } from './homepage/lost-password/lost-password.component';
 import { LookPasswordComponent } from './homepage/look-password/look-password.component';
+
+// Module
+import { LayoutModule } from './shared/layout/layout.module';
+import { RegexpModule } from './shared/validator/regexp/regexp.module';
+
+// Routing
+import { APP_ROUTING } from './app.routing';
+
+// Services
+import { AuthService } from './shared/services/auth.service';
+import { ProfileComponent } from './profile/profile.component';
+import { UserService } from './shared/services/user.service';
+
+// Guards
+import { AuthGuard } from './shared/guards/auth.guard';
+
+// Interceptors
+import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
+
+// Material
 import { MaterialFileInputModule } from 'ngx-material-file-input';
+// Pipe
 import { FilterPipe } from './shared/pipes/filter.pipe';
 
 @NgModule({

@@ -2,10 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { User } from '../../shared/models/user.model';
 import { AuthService } from '../../shared/services/auth.service';
 import { RegexpModule } from '../../shared/validator/regexp/regexp.module';
-import { FileValidator } from 'ngx-material-file-input';
 
 @Component({
   selector: 'app-signup',

@@ -7,10 +7,6 @@
 var app = require("../app");
 var debug = require("debug")("server:server");
 var http = require("http");
-const socketIo = require("socket.io");
-const mongoose = require("mongoose");
-const User = require("../models/user.models");
-const Post = require("../models/post.models");
 
 /**
  * Get port from environment and store in Express.
@@ -24,58 +20,6 @@ app.set("port", port);
  */
 
 var server = http.createServer(app);
-const io = socketIo(server, {
-  allowEIO3: true,
-  cors: {
-    origin: ["*"],
-  },
-});
-
-io.on("connection", (socket) => {
-  console.log("User Connected");
-  const listUser = [];
-  mongoose.connect(
-    "mongodb+srv://johan:johan@cluster0.092gy.mongodb.net/Reseaux?retryWrites=true&w=majority",
-    {
-      keepAlive: true,
-      useUnifiedTopology: true,
-      useNewUrlParser: true,
-    },
-    function (error) {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log("Connexion Socket opened to mongodb!");
-      }
-    }
-  );
-  setInterval(() => {
-    User.find({ isConnect: true })
-      .select("isConnect")
-      .exec((err, list) => {
-        if (err || !list) {
-          console.log(`Erreur liste d'utilisateurs introuvable`);
-        } else {
-          socket.emit("User", {
-            User: list,
-          });
-        }
-      });
-  }, 3000);
-  setInterval(() => {
-    Post.find({})
-      .select("_id")
-      .exec((err, list) => {
-        if (err || !list) {
-          console.log(`Erreur liste d'utilisateurs introuvable`);
-        } else {
-          socket.emit("Post", {
-            Post: list,
-          });
-        }
-      });
-  }, 3000);
-});
 
 /**
  * Listen on provided port, on all network interfaces.

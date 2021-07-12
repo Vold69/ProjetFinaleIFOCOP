@@ -27,11 +27,13 @@ export class AnswerModifAdminComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    // get Param
     this.subscription = this.activatedRoute.queryParamMap.subscribe((paramMap: ParamMap) => {
       this._id = paramMap.get('target');
       this.indexAnswer = parseInt(paramMap.get('index'), 10);
     });
 
+    // get Post to Modif
     this.subscription = this.postService.getPostOne(this._id).subscribe((data) => {
       this.postModif = data;
       this.postModif = this.postModif[0];
@@ -44,6 +46,7 @@ export class AnswerModifAdminComponent implements OnInit, OnDestroy {
 
   }
 
+  // send Post to Modif
   public trySendPost() {
     if (this.postFrom.value.content === '') {
       this.answerModif.content = this.answerModif.content;

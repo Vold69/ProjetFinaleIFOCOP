@@ -13,6 +13,7 @@ export class AdminComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // affiche tout les Posts
   public goPost() {
     this.route.navigate(['/admin/post'], {
       queryParamsHandling: 'merge',
@@ -20,6 +21,7 @@ export class AdminComponent implements OnInit {
     });
   }
 
+  // affiche tout les Users
   public goUser() {
     this.route.navigate(['/admin/user'], {
       queryParamsHandling: 'merge',

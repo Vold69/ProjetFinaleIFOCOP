@@ -1,8 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Observable } from 'rxjs';
 import { User } from '../shared/models/user.model';
 import { UserService } from '../shared/services/user.service';
 

@@ -1,6 +1,6 @@
-import { Component, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { User } from '../../shared/models/user.model';
 import { UserService } from '../../shared/services/user.service';
 

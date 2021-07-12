@@ -31,11 +31,13 @@ export class TopbarComponent implements OnInit, OnDestroy {
   }
 
   public logout(): void {
+    // deuxieme système de deco ( au où bug )
     // a delete
-    // this.authService.logout2();
-    this.subscription = this.authService.logout(this.idUser).subscribe(() => {
-      this.router.navigate(['/']);
-    });
+    this.authService.logout2();
+    // système de deco
+    // this.subscription = this.authService.logout(this.idUser).subscribe(() => {
+    //   this.router.navigate(['/']);
+    // });
   }
 
   ngOnDestroy(): void {
